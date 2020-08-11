@@ -77,12 +77,12 @@
         </exclusion>
       </exclusions>
     </dependency>
-    <!-- START of / Should be obsolete -->
+    <!-- START of / should work without -->
     <dependency>
       <groupId>com.vaadin</groupId>
       <artifactId>flow-server-compatibility-mode</artifactId>
     </dependency>
-    <!-- END of / Should be obsolete -->
+    <!-- END of / should work without -->
     <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-undertow</artifactId>
