@@ -1,3 +1,3 @@
-# Quarkus REST Microservice
+# Quarkus Vaadin Example Client
 
-Project structure for a REST based quarkus microservice. Its based upon Quarkus Version `1.6.1.Final`.
+Project structure for a Vaadin based quarkus client. Its based upon Quarkus Version `1.7.0.Final`.
