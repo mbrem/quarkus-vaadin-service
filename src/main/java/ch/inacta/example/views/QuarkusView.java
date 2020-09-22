@@ -15,7 +15,8 @@ import com.vaadin.flow.templatemodel.TemplateModel;
 /**
  * A Designer generated component for the quarkus-view template.
  *
- * Designer will add and remove fields with @Id mappings but does not overwrite or otherwise change this file.
+ * Designer will add and remove fields with @Id mappings but does not overwrite
+ * or otherwise change this file.
  */
 @Route("")
 @Tag("quarkus-view")
@@ -37,6 +38,7 @@ public class QuarkusView extends PolymerTemplate<QuarkusView.QuarkusViewModel> i
     public void beforeEnter(final BeforeEnterEvent event) {
 
         this.dateOfBirth.setValue(now());
+
     }
 
     /**

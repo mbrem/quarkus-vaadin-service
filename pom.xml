@@ -17,12 +17,14 @@
     <maven.compiler.source>11</maven.compiler.source>
     <maven.compiler.target>11</maven.compiler.target>
 
+    <maven.resources.plugin.version>3.1.0</maven.resources.plugin.version>
+
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-    <quarkus.version>1.7.0.Final</quarkus.version>
+    <quarkus.version>1.8.0.Final</quarkus.version>
 
-    <vaadin.version>14.3.1</vaadin.version>
+    <vaadin.version>14.3.4</vaadin.version>
   </properties>
 
   <dependencyManagement>
@@ -77,15 +79,15 @@
         </exclusion>
       </exclusions>
     </dependency>
-    <!-- START of / should work without -->
-    <dependency>
-      <groupId>com.vaadin</groupId>
-      <artifactId>flow-server-compatibility-mode</artifactId>
-    </dependency>
-    <!-- END of / should work without -->
     <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-undertow</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>com.urosporo.quarkus</groupId>
+      <artifactId>quarkus-vaadin-extension</artifactId>
+      <version>1.0.0-SNAPSHOT</version>
     </dependency>
   </dependencies>
 
@@ -95,11 +97,15 @@
         <groupId>com.vaadin</groupId>
         <artifactId>vaadin-maven-plugin</artifactId>
         <version>${vaadin.version}</version>
+        <configuration>
+          <frontendDirectory>${basedir}/target/classes/META-INF/resources/frontend/</frontendDirectory>
+        </configuration>
         <executions>
           <execution>
             <goals>
               <goal>prepare-frontend</goal>
             </goals>
+            <phase>process-resources</phase>
           </execution>
         </executions>
       </plugin>
@@ -117,4 +123,53 @@
       </plugin>
     </plugins>
   </build>
+  
+  <profiles>
+    <profile>
+      <id>production</id>
+      <properties>
+        <vaadin.productionMode>true</vaadin.productionMode>
+      </properties>
+      <dependencies>
+        <dependency>
+          <groupId>com.vaadin</groupId>
+          <artifactId>flow-server-production-mode</artifactId>
+        </dependency>
+      </dependencies>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-maven-plugin</artifactId>
+            <version>${vaadin.version}</version>
+            <configuration>
+              <frontendDirectory>${basedir}/target/classes/META-INF/resources/frontend/</frontendDirectory>
+              <generatedFolder>${basedir}/target/classes/META-INF/</generatedFolder>
+            </configuration>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>prepare-frontend</goal>
+                  <goal>build-frontend</goal>
+                </goals>
+                <phase>compile</phase>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-maven-plugin</artifactId>
+            <version>${quarkus.version}</version>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>build</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 </project>

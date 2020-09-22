@@ -1,8 +1,8 @@
 import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
-import '@vaadin/vaadin-ordered-layout/src/vaadin-vertical-layout.js';
-import '@vaadin/vaadin-date-picker/src/vaadin-date-picker.js';
+import '@vaadin/vaadin-ordered-layout/src/vaadin-horizontal-layout.js';
+import '@vaadin/vaadin-grid/src/vaadin-grid.js';
 
-class QuarkusView extends PolymerElement {
+class OurView extends PolymerElement {
 
     static get template() {
         return html`
@@ -12,14 +12,14 @@ class QuarkusView extends PolymerElement {
                     height: 100%;
                 }
             </style>
-<vaadin-vertical-layout theme="spacing-s" style="margin: var(--lumo-space-m);">
- <vaadin-date-picker id="dateOfBirth"></vaadin-date-picker>
-</vaadin-vertical-layout>
+<vaadin-horizontal-layout id="layout" style="width: 100%; height: 100%;">
+ <vaadin-grid id="grid"></vaadin-grid>
+</vaadin-horizontal-layout>
 `;
     }
 
     static get is() {
-        return 'quarkus-view';
+        return 'our-view';
     }
 
     static get properties() {
@@ -29,4 +29,4 @@ class QuarkusView extends PolymerElement {
     }
 }
 
-customElements.define(QuarkusView.is, QuarkusView);
+customElements.define(OurView.is, OurView);

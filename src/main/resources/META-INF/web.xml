@@ -1,11 +1,19 @@
 <web-app>
- <servlet>
+  <servlet>
     <servlet-name>vaadinServlet</servlet-name>
-    <servlet-class>com.vaadin.flow.server.VaadinServlet</servlet-class>
+    <servlet-class>com.urosporo.quarkus.QuarkusVaadinServlet</servlet-class>
 
     <init-param>
       <param-name>closeIdleSessions</param-name>
       <param-value>true</param-value>
+    </init-param>
+    <init-param>
+      <param-name>compatibilityMode</param-name>
+      <param-value>false</param-value>
+    </init-param>
+    <init-param>
+      <param-name>vaadin.frontend.token.file</param-name>
+      <param-value>/Users/brm/git/quarkus-vaadin-service/target/classes/META-INF/VAADIN/config/flow-build-info.json</param-value>
     </init-param>
     <async-supported>true</async-supported>
   </servlet>
